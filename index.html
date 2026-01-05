@@ -744,7 +744,13 @@
             </div>
 
             <div class="section checklist reveal">
-                <h2>✔ Final Quality Control</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>✔ Final Quality Control</h2>
+                    <button onclick="resetChecklist()"
+                        style="padding: 8px 16px; background: rgba(255, 77, 77, 0.15); color: #ff4d4d; border: 1px solid rgba(255, 77, 77, 0.3); border-radius: 99px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: all 0.3s;">
+                        Reset Checklist
+                    </button>
+                </div>
                 <div class="progress"><span id="bar">0%</span></div>
 
                 <div class="checkbox-item" onclick="toggle(this)">
@@ -845,6 +851,16 @@
             if (pct === 100) {
                 celebrate();
             }
+        }
+
+        // Reset Checklist
+        function resetChecklist() {
+            const checkboxes = document.querySelectorAll('.checkbox-item input');
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                cb.parentElement.classList.remove('checked');
+            });
+            update();
         }
 
         // Celebration Effect
